@@ -10,7 +10,9 @@ To those following my HKEX HFT work: rest assured that I will maintain a rigorou
 
 A Note on Proprietary Logic:
 Please understand that my personal Raw Mode configurations, XDC Constraints, and TCL Manual Routing scripts will remain private. These files contain highly specialized methodologies derived from my HFT research and represent core technical assets. However, I am committed to applying my expertise in Low-Latency architecture to provide the biological community with high-quality, distributable hardware logic that can truly push the boundaries of what is possible in science.
-**Target: 36ns Zero-Jitter Total Latency (18ns PMA + 18ns Neural Parsing & Trigger)**  
+
+
+**Target: 36ns Zero-Jitter Total Latency (18ns PMA + 18ns Neural Parsing & Trigger) And 6466B OR 8B10B(BUFFER OR BYPASS)**  
 **Deterministic for Multi-Channel Neural Spike Sorting & Closed-Loop Stimulation**
 
 ---
@@ -29,6 +31,7 @@ Please understand that my personal Raw Mode configurations, XDC Constraints, and
 *   **Buffer Bypass**: GTH receiver must use raw mode with the elastic buffer bypassed for manual alignment to eliminate non-deterministic latency.
 *   **Manual Synchronization**: A Triple-FF synchronization chain must be manually implemented in RTL for the asynchronous clock domain; Vivado default automatic constraints are forbidden.
 *   **Logic Depth**: Maximum of two levels of combinational logic between any two registers on the GTH RX Data Path.
+*   
 
 ---
 *(Detailed XDC constraints and manual routing TCL scripts are kept in internal physical model iterations.)*
