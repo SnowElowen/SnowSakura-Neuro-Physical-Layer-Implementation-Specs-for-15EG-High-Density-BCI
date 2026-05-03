@@ -85,8 +85,6 @@ module tb_snowsakura_neuro_top;
             $display("Stimulus Triggered   : %0d", cycle_count);
             $display("Logic Latency (Cycles): %0d", cycle_count - spike_injected_cycle);
             $display("=================================================");
-            
-            //errors warnings 
 
             if ((cycle_count - spike_injected_cycle) > 6) begin
                 $display("FATAL TIMING VIOLATION: Pipeline exceeds 18ns logical budget.");
