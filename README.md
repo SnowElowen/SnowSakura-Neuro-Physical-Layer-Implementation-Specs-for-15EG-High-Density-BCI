@@ -1,5 +1,15 @@
 # SnowSakura-Neuro: Physical Layer Implementation Specs for 15EG High-Density BCI
+This is SnowSakura-Neuro (SnowSakura 2)
+## Introduction
 
+I have always believed that the pursuit of ultimate hardware performance should not be confined solely to the world of financial competition. I am driven by a desire to contribute my capabilities to the advancement of Biological Computing and Neuroengineering. As such, this repository is dedicated to the biology domain, centered around my specialized Testbench (TB) ecosystem.
+
+Unlike my highly-specialized HKEX HFT physical layer implementations, which are built for absolute isolation and speed, SnowSakura-Neuro is designed for a broader impact. I will periodically upload and maintain public-facing Verilog implementations for standard biological communication protocols—specifically versions featuring integrated Buffers to ensure community-wide usability.
+
+To those following my HKEX HFT work: rest assured that I will maintain a rigorous Balance between these two domains.
+
+A Note on Proprietary Logic:
+Please understand that my personal Raw Mode configurations, XDC Constraints, and TCL Manual Routing scripts will remain private. These files contain highly specialized methodologies derived from my HFT research and represent core technical assets. However, I am committed to applying my expertise in Low-Latency architecture to provide the biological community with high-quality, distributable hardware logic that can truly push the boundaries of what is possible in science.
 **Target: 36ns Zero-Jitter Total Latency (18ns PMA + 18ns Neural Parsing & Trigger)**  
 **Deterministic for Multi-Channel Neural Spike Sorting & Closed-Loop Stimulation**
 
