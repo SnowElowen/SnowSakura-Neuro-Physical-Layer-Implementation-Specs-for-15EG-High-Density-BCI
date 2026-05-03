@@ -31,7 +31,25 @@ Please understand that my personal Raw Mode configurations, XDC Constraints, and
 *   **Buffer Bypass**: GTH receiver must use raw mode with the elastic buffer bypassed for manual alignment to eliminate non-deterministic latency.
 *   **Manual Synchronization**: A Triple-FF synchronization chain must be manually implemented in RTL for the asynchronous clock domain; Vivado default automatic constraints are forbidden.
 *   **Logic Depth**: Maximum of two levels of combinational logic between any two registers on the GTH RX Data Path.
-*   
+
+## Chapter 1: The Zero-Jitter Neural Processing Benchmark
+
+This testbench, `tb_snowsakura_neuro_top.v`, establishes a high-performance physical layer baseline for deterministic biological signal processing on the **Zynq UltraScale+ ZU15EG** platform.
+
+### Simulation Environment & Physical Parameters
+*   **Clock Domain**: Operates at a precise **322.56 MHz** frequency (**3.1ns** period), simulating the recovered clock environment of a high-speed GTH transceiver.
+*   **Data Path Simulation**: Models a **Raw Mode** data path that bypasses the internal elastic buffer. This is critical for eliminating non-deterministic latency (jitter) inherent in standard IP-based buffering.
+*   **Target Latency**: Benchmarks a total path latency of **36ns**. This is partitioned into an **18ns PMA** hardware delay and an **18ns (6-cycle) logical budget**.
+
+### Functional Mechanics
+*   **Synthetic Spike Injection**: At wire-speed, the TB injects a specific 64-bit signature (`64'hA5A5_DEAD_BEEF_0001`) to simulate a high-density neural spike burst.
+*   **Pipeline Verification**: It validates a **6-FF Pipeline** architecture. The implementation includes **3-cycle RX synchronization**, **1-cycle spike classification**, **1-cycle dual-path arbitration**, and **1-cycle TX**.
+*   **Strict Timing Assertion**: The simulation employs a hard-coded logic check to ensure the output stimulus occurs within exactly 6 clock cycles of the input spike.
+    > `if ((cycle_count - spike_injected_cycle) > 6)`
+*   **Failure Protocol**: If the logic execution exceeds the 18ns budget, the TB triggers a `FATAL TIMING VIOLATION`. This indicates the presence of jitter or logic-path congestion that would compromise a real-time neural feedback loop.
+
+### Objective
+The TB is designed to prove that neural signal interfacing can achieve the same level of physical-layer determinism required by **HFT** (High-Frequency Trading) architectures, ensuring that closed-loop stimulation remains phase-coherent with biological intent.
 
 ---
 *(Detailed XDC constraints and manual routing TCL scripts are kept in internal physical model iterations.)*
